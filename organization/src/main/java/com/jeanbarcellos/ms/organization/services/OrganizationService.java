@@ -1,5 +1,5 @@
 
-package com.jeanbarcellos.ms.services;
+package com.jeanbarcellos.ms.organization.services;
 
 import java.util.List;
 
@@ -11,10 +11,10 @@ import javax.ws.rs.NotFoundException;
 
 import org.eclipse.microprofile.rest.client.inject.RestClient;
 
-import com.jeanbarcellos.ms.client.DepartmentClient;
-import com.jeanbarcellos.ms.client.EmployeeClient;
-import com.jeanbarcellos.ms.entities.Organization;
-import com.jeanbarcellos.ms.repositories.OrganizationRepository;
+import com.jeanbarcellos.ms.organization.client.DepartmentClient;
+import com.jeanbarcellos.ms.organization.client.EmployeeClient;
+import com.jeanbarcellos.ms.organization.entities.Organization;
+import com.jeanbarcellos.ms.organization.repositories.OrganizationRepository;
 
 import lombok.extern.slf4j.Slf4j;
 

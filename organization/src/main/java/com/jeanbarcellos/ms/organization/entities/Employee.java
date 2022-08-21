@@ -1,4 +1,4 @@
-package com.jeanbarcellos.ms.entities;
+package com.jeanbarcellos.ms.organization.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 

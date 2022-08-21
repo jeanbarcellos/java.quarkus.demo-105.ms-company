@@ -1,10 +1,10 @@
-package com.jeanbarcellos.ms.repositories;
+package com.jeanbarcellos.ms.employee.repositories;
 
 import java.util.List;
 
 import javax.enterprise.context.ApplicationScoped;
 
-import com.jeanbarcellos.ms.entities.Employee;
+import com.jeanbarcellos.ms.employee.entities.Employee;
 
 import io.quarkus.hibernate.orm.panache.PanacheRepositoryBase;
 

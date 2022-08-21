@@ -33,6 +33,18 @@ public class EmployeeService {
         return repository.findById(id);
     }
 
+    public List<Employee> getByDepartment(Long departmentId) {
+        log.info("Employee find: departmentId={}", departmentId);
+
+        return repository.findByDepartment(departmentId);
+    }
+
+    public List<Employee> getByOrganization(Long organizationId) {
+        log.info("Employee find: organizationId={}", organizationId);
+
+        return repository.findByOrganization(organizationId);
+    }
+
     @Transactional
     public Employee insert(@Valid Employee employee) {
         log.info("Employee insert: {}", employee);

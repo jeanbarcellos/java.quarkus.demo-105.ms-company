@@ -37,6 +37,18 @@ public class EmployeeResource {
         return Response.ok(this.service.getById(id)).build();
     }
 
+    @Path("/department/{departmentId}")
+    @GET
+    public Response findByDepartment(@PathParam("departmentId") Long departmentId) {
+        return Response.ok(this.service.getByDepartment(departmentId)).build();
+    }
+
+    @Path("/organization/{organizationId}")
+    @GET
+    public Response findByOrganization(@PathParam("organizationId") Long organizationId) {
+        return Response.ok(this.service.getByOrganization(organizationId)).build();
+    }
+
     @POST
     @Path("/")
     @Transactional

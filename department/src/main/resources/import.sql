@@ -1,4 +1,3 @@
-
 insert into "department" (id, organization_id, name) values (1, 1, 'Compras');
 insert into "department" (id, organization_id, name) values (2, 1, 'Secretaria');
 insert into "department" (id, organization_id, name) values (3, 1, 'Informática');

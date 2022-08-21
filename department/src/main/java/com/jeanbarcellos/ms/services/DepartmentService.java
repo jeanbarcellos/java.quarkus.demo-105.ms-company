@@ -21,7 +21,7 @@ public class DepartmentService {
     DepartmentRepository repository;
 
     public List<Department> getAll() {
-        log.info("Department find");
+        log.info("Department find all");
 
         return repository.findAll().list();
     }

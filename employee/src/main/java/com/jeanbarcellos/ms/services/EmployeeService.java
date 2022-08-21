@@ -24,32 +24,32 @@ public class EmployeeService {
     public List<Employee> getAll() {
         log.info("Employee find all");
 
-        return repository.findAll().list();
+        return this.repository.findAll().list();
     }
 
     public Employee getById(Long id) {
         log.info("Employee find: id={}", id);
 
-        return repository.findById(id);
+        return this.repository.findById(id);
     }
 
     public List<Employee> getByDepartment(Long departmentId) {
         log.info("Employee find: departmentId={}", departmentId);
 
-        return repository.findByDepartment(departmentId);
+        return this.repository.findByDepartment(departmentId);
     }
 
     public List<Employee> getByOrganization(Long organizationId) {
         log.info("Employee find: organizationId={}", organizationId);
 
-        return repository.findByOrganization(organizationId);
+        return this.repository.findByOrganization(organizationId);
     }
 
     @Transactional
     public Employee insert(@Valid Employee employee) {
         log.info("Employee insert: {}", employee);
 
-        repository.persist(employee);
+        this.repository.persist(employee);
 
         return employee;
     }
@@ -67,7 +67,7 @@ public class EmployeeService {
                 .setAge(employee.getAge())
                 .setPosition(employee.getPosition());
 
-        repository.persist(entity);
+        this.repository.persist(entity);
 
         return employee;
     }
@@ -79,7 +79,7 @@ public class EmployeeService {
         var entity = this.repository.findByIdOptional(id)
                 .orElseThrow(NotFoundException::new);
 
-        repository.delete(entity);
+        this.repository.delete(entity);
     }
 
 }

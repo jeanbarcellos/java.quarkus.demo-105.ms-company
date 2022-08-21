@@ -1,4 +1,4 @@
-package com.jeanbarcellos.ms.services;
+package com.jeanbarcellos.ms.department.services;
 
 import java.util.List;
 
@@ -10,9 +10,9 @@ import javax.ws.rs.NotFoundException;
 
 import org.eclipse.microprofile.rest.client.inject.RestClient;
 
-import com.jeanbarcellos.ms.client.EmployeeClient;
-import com.jeanbarcellos.ms.entities.Department;
-import com.jeanbarcellos.ms.repositories.DepartmentRepository;
+import com.jeanbarcellos.ms.department.client.EmployeeClient;
+import com.jeanbarcellos.ms.department.entities.Department;
+import com.jeanbarcellos.ms.department.repositories.DepartmentRepository;
 
 import lombok.extern.slf4j.Slf4j;
 

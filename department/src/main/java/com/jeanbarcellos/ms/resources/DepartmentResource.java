@@ -43,6 +43,12 @@ public class DepartmentResource {
         return Response.ok(this.service.getByOrganization(organizationId)).build();
     }
 
+    @Path("/organization/{organizationId}/with-employees")
+    @GET
+    public Response getByOrganizationWithEmployees(@PathParam("organizationId") Long organizationId) {
+        return Response.ok(this.service.getByOrganizationWithEmployees(organizationId)).build();
+    }
+
     @POST
     @Path("/")
     @Transactional

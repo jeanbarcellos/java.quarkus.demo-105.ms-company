@@ -27,14 +27,32 @@ public class OrganizationResource {
     OrganizationService service;
 
     @GET
-    public Response findAll() {
+    public Response getAll() {
         return Response.ok(this.service.getAll()).build();
     }
 
     @GET
     @Path("/{id}")
-    public Response findById(@PathParam("id") Long id) {
+    public Response getById(@PathParam("id") Long id) {
         return Response.ok(this.service.getById(id)).build();
+    }
+
+    @GET
+    @Path("/{id}/with-departments")
+    public Response getByIdWithDepartments(@PathParam("id") Long id) {
+        return Response.ok(this.service.getByIdWithDepartments(id)).build();
+    }
+
+    @GET
+    @Path("/{id}/with-departments-and-employees")
+    public Response getByIdWithDepartmentsAndEmployees(@PathParam("id") Long id) {
+        return Response.ok(this.service.getByIdWithDepartmentsAndEmployees(id)).build();
+    }
+
+    @GET
+    @Path("/{id}/with-employees")
+    public Response getByIdWithEmployees(@PathParam("id") Long id) {
+        return Response.ok(this.service.getByIdWithEmployees(id)).build();
     }
 
     @POST

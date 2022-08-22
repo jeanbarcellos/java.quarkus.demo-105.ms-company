@@ -16,6 +16,7 @@
     <quarkus.platform.version>2.11.2.Final</quarkus.platform.version>
     <skipITs>true</skipITs>
     <surefire-plugin.version>3.0.0-M7</surefire-plugin.version>
+    <consul-client.version>1.4.0</consul-client.version>
   </properties>
 
   <dependencyManagement>
@@ -84,6 +85,12 @@
     <dependency>
       <groupId>io.quarkus</groupId>
       <artifactId>quarkus-hibernate-validator</artifactId>
+    </dependency>
+    <!-- Discobery/Registry Services -->
+    <dependency>
+      <groupId>com.orbitz.consul</groupId>
+      <artifactId>consul-client</artifactId>
+      <version>${consul-client.version}</version>
     </dependency>
 
     <!-- DEPENDENCIAS PARA TESTE -->

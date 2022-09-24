@@ -1,6 +1,6 @@
 package com.jeanbarcellos.ms.department.lifecycle;
 
-import java.util.List;
+import java.util.UUID;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -14,9 +14,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.orbitz.consul.Consul;
-import com.orbitz.consul.HealthClient;
 import com.orbitz.consul.model.agent.ImmutableRegistration;
-import com.orbitz.consul.model.health.ServiceHealth;
 
 import io.quarkus.runtime.ShutdownEvent;
 import io.quarkus.runtime.StartupEvent;
@@ -44,11 +42,7 @@ public class ConsulLifecycle {
         ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
 
         executorService.schedule(() -> {
-            HealthClient healthClient = consulClient.healthClient();
-
-            List<ServiceHealth> instances = healthClient.getHealthyServiceInstances(appName).getResponse();
-
-            instanceId = appName + "-" + instances.size();
+            instanceId = appName + "-" + UUID.randomUUID();
 
             ImmutableRegistration registration = ImmutableRegistration.builder()
                     .id(instanceId)

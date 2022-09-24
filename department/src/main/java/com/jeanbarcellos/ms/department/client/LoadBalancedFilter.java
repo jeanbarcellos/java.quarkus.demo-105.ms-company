@@ -31,15 +31,19 @@ public class LoadBalancedFilter implements ClientRequestFilter {
     public void filter(ClientRequestContext requestContext) {
         URI uri = requestContext.getUri();
 
+        LOGGER.info("Get instances of '{}'.", uri.getHost());
+
         HealthClient healthClient = consulClient.healthClient();
 
         List<ServiceHealth> instances = healthClient.getHealthyServiceInstances(uri.getHost()).getResponse();
 
-        instances.forEach(it -> LOGGER.info("Instance: uri={}:{}",
-                it.getService().getAddress(),
-                it.getService().getPort()));
+        this.logInstances(instances);
 
-        ServiceHealth instance = instances.get(counter.getAndIncrement() % instances.size());
+        if (instances.isEmpty()) {
+            LOGGER.error("The '{}' instance not found.", uri.getHost());
+        }
+
+        ServiceHealth instance = getInstance(instances);
 
         URI u = UriBuilder.fromUri(uri)
                 .host(instance.getService().getAddress())
@@ -47,6 +51,35 @@ public class LoadBalancedFilter implements ClientRequestFilter {
                 .build();
 
         requestContext.setUri(u);
+    }
+
+    private void logInstances(List<ServiceHealth> instances) {
+        LOGGER.info("Instances:");
+
+        var index = 0;
+        for (ServiceHealth instance : instances) {
+            LOGGER.info("  index={} uri={}:{}",
+                    index,
+                    instance.getService().getAddress(),
+                    instance.getService().getPort());
+            index++;
+        }
+    }
+
+    private ServiceHealth getInstance(List<ServiceHealth> instances) {
+        Integer random = selectInstance(instances.size());
+
+        var instance = instances.get(random);
+
+        LOGGER.info("Selected:");
+        LOGGER.info("  index={} uri={}:{}",
+                random, instance.getService().getAddress(), instance.getService().getPort());
+
+        return instance;
+    }
+
+    private Integer selectInstance(Integer qtd) {
+        return counter.getAndAccumulate(qtd, (cur, n) -> cur >= n - 1 ? 0 : cur + 1);
     }
 
 }

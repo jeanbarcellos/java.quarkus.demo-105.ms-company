@@ -19,11 +19,11 @@ public class ConsulProducer {
     @Produces
     Consul consulClient = Consul.builder().build();
 
-    @ConfigProperty(name = "client.employee.uri")
+    @ConfigProperty(name = "client.employee-api.uri")
     String employeeUri;
 
     @Produces
-    LoadBalancedFilter filter = new LoadBalancedFilter(consulClient);
+    LoadBalancedFilter employeeFilter = new LoadBalancedFilter(consulClient);
 
     @Produces
     EmployeeClient employeeClient() throws URISyntaxException {
@@ -31,7 +31,7 @@ public class ConsulProducer {
 
         return RestClientBuilder.newBuilder()
                 .baseUri(builder.build())
-                .register(filter)
+                .register(employeeFilter)
                 .build(EmployeeClient.class);
     }
 

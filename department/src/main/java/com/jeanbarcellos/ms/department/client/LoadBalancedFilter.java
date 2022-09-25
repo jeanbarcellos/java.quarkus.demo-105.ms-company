@@ -45,12 +45,9 @@ public class LoadBalancedFilter implements ClientRequestFilter {
 
         ServiceHealth instance = getInstance(instances);
 
-        URI u = UriBuilder.fromUri(uri)
-                .host(instance.getService().getAddress())
-                .port(instance.getService().getPort())
-                .build();
+        URI newUri = createUri(uri, instance);
 
-        requestContext.setUri(u);
+        requestContext.setUri(newUri);
     }
 
     private void logInstances(List<ServiceHealth> instances) {
@@ -80,6 +77,13 @@ public class LoadBalancedFilter implements ClientRequestFilter {
 
     private Integer selectInstance(Integer qtd) {
         return counter.getAndAccumulate(qtd, (cur, n) -> cur >= n - 1 ? 0 : cur + 1);
+    }
+
+    private URI createUri(URI uri, ServiceHealth instance) {
+        return UriBuilder.fromUri(uri)
+                .host(instance.getService().getAddress())
+                .port(instance.getService().getPort())
+                .build();
     }
 
 }

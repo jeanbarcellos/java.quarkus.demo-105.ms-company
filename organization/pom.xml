@@ -86,11 +86,15 @@
       <groupId>io.quarkus</groupId>
       <artifactId>quarkus-hibernate-validator</artifactId>
     </dependency>
-    <!-- Discobery/Registry Services -->
+    <!-- Discovery/Registry Services -->
     <dependency>
       <groupId>com.orbitz.consul</groupId>
       <artifactId>consul-client</artifactId>
       <version>${consul-client.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.quarkiverse.config</groupId>
+      <artifactId>quarkus-config-consul</artifactId>
     </dependency>
 
     <!-- DEPENDENCIAS PARA TESTE -->

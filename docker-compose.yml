@@ -10,10 +10,10 @@ services:
     ports:
       - 8500:8500
     networks:
-      - cx-company-net
+      - project105-net
 
 networks:
-  cx-company-net:
-    name: cx-company-net
+  project105-net:
+    name: project105-net
     driver: bridge
     external: true

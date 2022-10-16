@@ -23,6 +23,38 @@ Nosso sistema baseado em microsserviços de amostra consiste nos seguintes servi
 - **gateway-service**
   - Serviço que usa o Spring Cloud Gateway para executar o aplicativo Spring Boot que atua como um proxy/gateway em nossa arquitetura.
 
+## Docker
+
+Criar rede para contexto company
+
+```bash
+docker network create project105-net
+```
+
+### employee-service
+
+Acessar o terminal (em modo administrador) na raiz do `employee-service`
+
+```bash
+mvn package -DskipTests
+```
+
+Gerar imagem Docker, usando o comando:
+
+```
+docker build -t project105/employee .
+```
+
+Em seguida, execute o contêiner usando:
+
+```
+
+docker run -i --rm -P --network project105-net project105/employee
+
+docker run -i --rm -p 8081:8080 --network project105-net project105/employee
+
+```
+
 ## Endpoits
 
 **employee-api**

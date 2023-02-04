@@ -23,17 +23,47 @@ Nosso sistema baseado em microsserviços de amostra consiste nos seguintes servi
 - **gateway-service**
   - Serviço que usa o Spring Cloud Gateway para executar o aplicativo Spring Boot que atua como um proxy/gateway em nossa arquitetura.
 
+## Databases
+
+```properties
+## H2
+quarkus.datasource.db-kind=h2
+quarkus.datasource.jdbc.driver=org.h2.Driver
+quarkus.datasource.jdbc.url=jdbc:h2:mem:default
+quarkus.hibernate-orm.dialect=org.hibernate.dialect.PostgreSQL95Dialect
+
+## PostgreSQL
+quarkus.datasource.db-kind=postgresql
+quarkus.datasource.jdbc.driver=org.postgresql.Driver
+quarkus.datasource.jdbc.url=jdbc:postgresql://${POSTGRES_HOST:localhost}:${POSTGRES_PORT:5433}/${POSTGRES_DB:employee}
+quarkus.datasource.username=${POSTGRES_USER:postgres}
+quarkus.datasource.password=${POSTGRES_PASSWORD:postgres}
+quarkus.hibernate-orm.dialect=org.hibernate.dialect.PostgreSQL95Dialect
+```
+
 ## Docker
 
 Criar rede para contexto company
+
+```
+docker volume create consul_data --label description='Persistent data for consul'
+```
 
 ```bash
 docker network create project105-net
 ```
 
-### employee-service
+### employee-db
 
-Acessar o terminal (em modo administrador) na raiz do `employee-service`
+Acessar o terminal (em modo administrador) na raiz do `employee-db`
+
+```
+docker build -t project105/employee-db .
+```
+
+### employee-api
+
+Acessar o terminal (em modo administrador) na raiz do `employee`
 
 ```bash
 mvn package -DskipTests
@@ -42,16 +72,16 @@ mvn package -DskipTests
 Gerar imagem Docker, usando o comando:
 
 ```
-docker build -t project105/employee .
+docker build -t project105/employee-api .
 ```
 
 Em seguida, execute o contêiner usando:
 
 ```
 
-docker run -i --rm -P --network project105-net project105/employee
+docker run -i --rm -P --network project105-net project105/employee-api
 
-docker run -i --rm -p 8081:8080 --network project105-net project105/employee
+docker run -i --rm -p 8081:8080 --network project105-net project105/employee-api
 
 ```
 

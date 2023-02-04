@@ -11,9 +11,38 @@ services:
       - 8500:8500
     networks:
       - project105-net
+    volumes:
+      - ./consul_data:/consul/data
+
+  employee-db:
+    # image: postgres:14.5
+    build: "./employee-db"
+    image: project105/employee-db
+    container_name: employee-db
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=employee
+    ports:
+      - 5532:5432
+    networks:
+      - project105-net
+
+  employee-api:
+    image: project105/employee-api
+    container_name: employee-api
+    restart: always
+    depends_on:
+      - employee-db
+    environment:
+      - POSTGRES_HOST=employee-db
+      - POSTGRES_PORT=5432
+      - POSTGRES_DB=employee
+    networks:
+      - project105-net
 
 networks:
   project105-net:
     name: project105-net
     driver: bridge
-    external: true

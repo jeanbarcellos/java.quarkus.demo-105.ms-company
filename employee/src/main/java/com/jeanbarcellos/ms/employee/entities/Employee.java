@@ -3,7 +3,9 @@ package com.jeanbarcellos.ms.employee.entities;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -11,6 +13,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -22,13 +25,17 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ToString
 @Entity
 @Table(name = "\"employee\"")
 public class Employee {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(generator = "employee_id_seq_generator", strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name = "employee_id_seq_generator", sequenceName = "employee_id_seq", allocationSize = 1)
+    @Column(name = "id", nullable = false, columnDefinition = "BIGSERIAL")
+    @EqualsAndHashCode.Include
     private Long id;
 
     @NotNull

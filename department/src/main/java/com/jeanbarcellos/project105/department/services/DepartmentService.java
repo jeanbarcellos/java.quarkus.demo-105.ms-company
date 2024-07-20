@@ -1,4 +1,4 @@
-package com.jeanbarcellos.ms.department.services;
+package com.jeanbarcellos.project105.department.services;
 
 import java.util.List;
 
@@ -8,9 +8,9 @@ import javax.transaction.Transactional;
 import javax.validation.Valid;
 import javax.ws.rs.NotFoundException;
 
-import com.jeanbarcellos.ms.department.client.EmployeeClient;
-import com.jeanbarcellos.ms.department.entities.Department;
-import com.jeanbarcellos.ms.department.repositories.DepartmentRepository;
+import com.jeanbarcellos.project105.department.client.EmployeeClient;
+import com.jeanbarcellos.project105.department.entities.Department;
+import com.jeanbarcellos.project105.department.repositories.DepartmentRepository;
 
 import lombok.extern.slf4j.Slf4j;
 

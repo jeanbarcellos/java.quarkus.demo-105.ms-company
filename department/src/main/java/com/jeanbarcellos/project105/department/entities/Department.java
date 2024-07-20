@@ -1,4 +1,4 @@
-package com.jeanbarcellos.ms.department.entities;
+package com.jeanbarcellos.project105.department.entities;
 
 import java.util.ArrayList;
 import java.util.List;

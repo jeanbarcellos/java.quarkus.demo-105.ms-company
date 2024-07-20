@@ -1,7 +1,4 @@
-package com.jeanbarcellos.ms.organization.entities;
-
-import java.util.ArrayList;
-import java.util.List;
+package com.jeanbarcellos.project105.organization.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -19,12 +16,14 @@ import lombok.experimental.Accessors;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Department {
+public class Employee {
 
     private Long id;
 
     private String name;
 
-    private List<Employee> employees = new ArrayList<>();
+    private int age;
+
+    private String position;
 
 }

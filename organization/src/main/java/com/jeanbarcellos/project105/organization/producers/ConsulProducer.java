@@ -1,4 +1,4 @@
-package com.jeanbarcellos.ms.organization.producers;
+package com.jeanbarcellos.project105.organization.producers;
 
 import java.net.URISyntaxException;
 
@@ -9,9 +9,9 @@ import org.apache.http.client.utils.URIBuilder;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.eclipse.microprofile.rest.client.RestClientBuilder;
 
-import com.jeanbarcellos.ms.organization.client.DepartmentClient;
-import com.jeanbarcellos.ms.organization.client.EmployeeClient;
-import com.jeanbarcellos.ms.organization.client.LoadBalancedFilter;
+import com.jeanbarcellos.project105.organization.client.DepartmentClient;
+import com.jeanbarcellos.project105.organization.client.EmployeeClient;
+import com.jeanbarcellos.project105.organization.client.LoadBalancedFilter;
 import com.orbitz.consul.Consul;
 
 @ApplicationScoped

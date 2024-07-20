@@ -1,5 +1,5 @@
 
-package com.jeanbarcellos.ms.employee.services;
+package com.jeanbarcellos.project105.employee.services;
 
 import java.util.List;
 
@@ -9,8 +9,8 @@ import javax.transaction.Transactional;
 import javax.validation.Valid;
 import javax.ws.rs.NotFoundException;
 
-import com.jeanbarcellos.ms.employee.entities.Employee;
-import com.jeanbarcellos.ms.employee.repositories.EmployeeRepository;
+import com.jeanbarcellos.project105.employee.entities.Employee;
+import com.jeanbarcellos.project105.employee.repositories.EmployeeRepository;
 
 import lombok.extern.slf4j.Slf4j;
 

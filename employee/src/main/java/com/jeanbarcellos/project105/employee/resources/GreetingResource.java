@@ -1,4 +1,4 @@
-package com.jeanbarcellos.ms.employee.resources;
+package com.jeanbarcellos.project105.employee.resources;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;

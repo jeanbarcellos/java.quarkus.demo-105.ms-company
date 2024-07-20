@@ -1,4 +1,4 @@
-package com.jeanbarcellos.ms.employee.entities;
+package com.jeanbarcellos.project105.employee.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

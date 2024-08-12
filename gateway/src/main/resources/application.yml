@@ -1,6 +1,7 @@
 spring:
   application:
     name: gateway-service
+
   cloud:
     gateway:
       discovery:
@@ -13,18 +14,29 @@ spring:
             - Path=/api/employees/**
           filters:
             - StripPrefix=1
+
         - id: department-service
           uri: lb://department
           predicates:
             - Path=/api/departments/**
           filters:
             - StripPrefix=1
+
         - id: organization-service
           uri: lb://organization
           predicates:
             - Path=/api/organizations/**
           filters:
             - StripPrefix=1
+
+    consul:
+      host: ${CONSUL_HOST:localhost}
+      port: ${CONSUL_PORT:8500}
+      discovery:
+        enabled: true
+        register: true
+        prefer-ip-address: false
+
     loadbalancer:
       ribbon:
         enabled: false

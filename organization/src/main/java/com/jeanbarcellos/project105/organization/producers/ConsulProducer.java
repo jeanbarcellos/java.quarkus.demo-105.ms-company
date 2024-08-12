@@ -9,41 +9,58 @@ import org.apache.http.client.utils.URIBuilder;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.eclipse.microprofile.rest.client.RestClientBuilder;
 
+import com.google.common.net.HostAndPort;
 import com.jeanbarcellos.project105.organization.client.DepartmentClient;
 import com.jeanbarcellos.project105.organization.client.EmployeeClient;
 import com.jeanbarcellos.project105.organization.client.LoadBalancedFilter;
 import com.orbitz.consul.Consul;
 
+/**
+ * Service Provider/Producer para
+ *
+ * Registrar o Client Consult
+ *
+ * @author Jean Silva de Barcellos
+ */
 @ApplicationScoped
 public class ConsulProducer {
 
-    @Produces
-    Consul consulClient = Consul.builder().build();
+    @ConfigProperty(name = "consul.host")
+    protected String host;
+
+    @ConfigProperty(name = "consul.port")
+    protected int port;
 
     @ConfigProperty(name = "client.employee-api.uri")
-    String employeeUri;
+    protected String employeeUri;
 
     @ConfigProperty(name = "client.department-api.uri")
-    String departmentUri;
+    protected String departmentUri;
 
     @Produces
-    LoadBalancedFilter employeeFilter = new LoadBalancedFilter(consulClient);
+    Consul consulClient() {
+        return Consul.builder()
+                .withHostAndPort(HostAndPort.fromParts(host, port))
+                .build();
+    }
 
     @Produces
-    LoadBalancedFilter departmentFilter = new LoadBalancedFilter(consulClient);
+    LoadBalancedFilter loadBalancedFilter(Consul consulClient) {
+        return new LoadBalancedFilter(consulClient);
+    }
 
     @Produces
-    EmployeeClient employeeClient() throws URISyntaxException {
+    EmployeeClient employeeClient(LoadBalancedFilter loadBalancedFilter) throws URISyntaxException {
         URIBuilder builder = new URIBuilder(employeeUri);
 
         return RestClientBuilder.newBuilder()
                 .baseUri(builder.build())
-                .register(employeeFilter)
+                .register(loadBalancedFilter)
                 .build(EmployeeClient.class);
     }
 
     @Produces
-    DepartmentClient departmentClient() throws URISyntaxException {
+    DepartmentClient departmentClient(LoadBalancedFilter departmentFilter) throws URISyntaxException {
         URIBuilder builder = new URIBuilder(departmentUri);
 
         return RestClientBuilder.newBuilder()

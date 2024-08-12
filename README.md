@@ -23,15 +23,58 @@ Nosso sistema baseado em microsserviços de amostra consiste nos seguintes servi
 - **gateway-service**
   - Serviço que usa o Spring Cloud Gateway para executar o aplicativo Spring Boot que atua como um proxy/gateway em nossa arquitetura.
 
+
 ## Docker
+
+### **Opção 1 - Apenas rodar projeto | Compose com imagens do Docker HUB**
+
+Rodar o Docker Compose:
+
+```bash
+docker-compose up -d
+```
+
+- `-d` ou `--detach`: Modo desanexado: execute os contêineres em segundo plano, imprima novos nomes de contêineres.
+
+Verificar status
+
+```bash
+docker-compose ps
+```
+
+Derrubar compose
+
+```bash
+docker-compose down
+```
+
+<br>
+
+### **Opção 2 - Desenvolvimento - Apenas os recursos**
+
+Se você deseja apenas levantar o banco de dado, para rodar o `backend` e `frontend` separadamente execute.
+
+```bash
+docker-compose -f docker-compose_only-resources.yml up -d
+```
+
+Derrubar/baixar containers
+
+```bash
+docker-compose down
+```
+
+<br>
+
+### **Opção 3 - Criação manual**
 
 Criar rede para contexto company
 
 ```bash
-docker network create project105-net
+docker network create project105_net
 ```
 
-### employee-service
+#### employee-service
 
 Acessar o terminal (em modo administrador) na raiz do `employee-service`
 
@@ -49,9 +92,9 @@ Em seguida, execute o contêiner usando:
 
 ```
 
-docker run -i --rm -P --network project105-net project105/employee
+docker run -i --rm -P --network project105_net project105/employee
 
-docker run -i --rm -p 8081:8080 --network project105-net project105/employee
+docker run -i --rm -p 8081:8080 --network project105_net project105/employee
 
 ```
 

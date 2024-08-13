@@ -23,10 +23,31 @@ Nosso sistema baseado em microsserviços de amostra consiste nos seguintes servi
 - **gateway-service**
   - Serviço que usa o Spring Cloud Gateway para executar o aplicativo Spring Boot que atua como um proxy/gateway em nossa arquitetura.
 
-## Instruções
+## Endpoits
 
-Criar rede para co contexto company
+**employee-api**
 
-```bash
-docker network create cx-company-net
-```
+![employee-api](doc/img/employee-api.png)
+
+**department-api**
+
+![employee-api](doc/img/department-api.png)
+
+**organization-api**
+
+![employee-api](doc/img/organization-api.png)
+
+**getwary-api**
+
+O gateway de API está disponível na porta `8080`. Ele usa prefixo `/api`.
+
+Aqui estão alguns endpoints para listar todos os funcionários, departamentos e organizações disponíveis.
+
+- http://localhost:8080/api/employees
+- http://localhost:8080/api/departments
+- http://localhost:8080/api/organizations
+
+## Referências
+
+- https://piotrminkowski.com/2020/11/24/quarkus-microservices-with-consul-discovery/
+- https://quarkiverse.github.io/quarkiverse-docs/quarkus-config-extensions/dev/consul.html

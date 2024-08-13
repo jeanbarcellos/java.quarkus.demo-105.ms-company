@@ -27,14 +27,20 @@ public class DepartmentResource {
     DepartmentService service;
 
     @GET
-    public Response findAll() {
+    public Response getAll() {
         return Response.ok(this.service.getAll()).build();
     }
 
     @GET
     @Path("/{id}")
-    public Response findById(@PathParam("id") Long id) {
+    public Response getById(@PathParam("id") Long id) {
         return Response.ok(this.service.getById(id)).build();
+    }
+
+    @GET
+    @Path("/organization/{organizationId}")
+    public Response getyByOrganization(@PathParam("organizationId") Long organizationId) {
+        return Response.ok(this.service.getByOrganization(organizationId)).build();
     }
 
     @POST

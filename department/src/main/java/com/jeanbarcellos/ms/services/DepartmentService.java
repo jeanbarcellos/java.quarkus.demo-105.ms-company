@@ -23,20 +23,26 @@ public class DepartmentService {
     public List<Department> getAll() {
         log.info("Department find all");
 
-        return repository.findAll().list();
+        return this.repository.findAll().list();
     }
 
     public Department getById(Long id) {
         log.info("Department find: id={}", id);
 
-        return repository.findById(id);
+        return this.repository.findById(id);
+    }
+
+    public List<Department> getByOrganization(Long organizationId) {
+        log.info("Department find: organizationId={}", organizationId);
+
+        return this.repository.findByOrganization(organizationId);
     }
 
     @Transactional
     public Department insert(@Valid Department department) {
         log.info("Department insert: {}", department);
 
-        repository.persist(department);
+        this.repository.persist(department);
 
         return department;
     }
@@ -52,7 +58,7 @@ public class DepartmentService {
                 .setOrganizationId(department.getOrganizationId())
                 .setEmployees(department.getEmployees());
 
-        repository.persist(entity);
+        this.repository.persist(entity);
 
         return department;
     }
@@ -64,7 +70,7 @@ public class DepartmentService {
         var entity = this.repository.findByIdOptional(id)
                 .orElseThrow(NotFoundException::new);
 
-        repository.delete(entity);
+        this.repository.delete(entity);
     }
 
 }

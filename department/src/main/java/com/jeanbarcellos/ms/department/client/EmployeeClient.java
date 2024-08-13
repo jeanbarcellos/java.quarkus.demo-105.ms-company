@@ -1,4 +1,4 @@
-package com.jeanbarcellos.ms.client;
+package com.jeanbarcellos.ms.department.client;
 
 import java.util.List;
 
@@ -12,7 +12,7 @@ import javax.ws.rs.core.MediaType;
 
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 
-import com.jeanbarcellos.ms.entities.Employee;
+import com.jeanbarcellos.ms.department.entities.Employee;
 
 @Path("/employees")
 @RegisterRestClient(configKey = "employee-api")

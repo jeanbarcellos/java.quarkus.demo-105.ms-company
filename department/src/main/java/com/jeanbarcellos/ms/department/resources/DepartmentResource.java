@@ -1,4 +1,4 @@
-package com.jeanbarcellos.ms.resources;
+package com.jeanbarcellos.ms.department.resources;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;
@@ -15,8 +15,8 @@ import javax.ws.rs.core.Response;
 
 import org.eclipse.microprofile.openapi.annotations.parameters.RequestBody;
 
-import com.jeanbarcellos.ms.entities.Department;
-import com.jeanbarcellos.ms.services.DepartmentService;
+import com.jeanbarcellos.ms.department.entities.Department;
+import com.jeanbarcellos.ms.department.services.DepartmentService;
 
 @Path("/departments")
 @Consumes(MediaType.APPLICATION_JSON)

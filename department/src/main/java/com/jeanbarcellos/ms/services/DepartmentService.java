@@ -8,6 +8,9 @@ import javax.transaction.Transactional;
 import javax.validation.Valid;
 import javax.ws.rs.NotFoundException;
 
+import org.eclipse.microprofile.rest.client.inject.RestClient;
+
+import com.jeanbarcellos.ms.client.EmployeeClient;
 import com.jeanbarcellos.ms.entities.Department;
 import com.jeanbarcellos.ms.repositories.DepartmentRepository;
 
@@ -19,6 +22,10 @@ public class DepartmentService {
 
     @Inject
     DepartmentRepository repository;
+
+    @Inject
+    @RestClient
+    EmployeeClient employeeClient;
 
     public List<Department> getAll() {
         log.info("Department find all");
@@ -36,6 +43,16 @@ public class DepartmentService {
         log.info("Department find: organizationId={}", organizationId);
 
         return this.repository.findByOrganization(organizationId);
+    }
+
+    public List<Department> getByOrganizationWithEmployees(Long organizationId) {
+        log.info("Department find: organizationId={}", organizationId);
+
+        List<Department> departments = repository.findByOrganization(organizationId);
+
+        departments.forEach(d -> d.setEmployees(this.employeeClient.getByDepartment(d.getId())));
+
+        return departments;
     }
 
     @Transactional

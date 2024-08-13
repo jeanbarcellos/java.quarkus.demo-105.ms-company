@@ -17,6 +17,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 import lombok.experimental.Accessors;
 
 @Getter
@@ -24,6 +25,7 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 @Builder
 @Entity
 @Table(name = "\"department\"")

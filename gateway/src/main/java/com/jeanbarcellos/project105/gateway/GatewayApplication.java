@@ -1,4 +1,4 @@
-package com.jeanbarcellos.ms.gateway;
+package com.jeanbarcellos.project105.gateway;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,4 +1,4 @@
-package com.jeanbarcellos.ms.gateway;
+package com.jeanbarcellos.project105.gateway;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

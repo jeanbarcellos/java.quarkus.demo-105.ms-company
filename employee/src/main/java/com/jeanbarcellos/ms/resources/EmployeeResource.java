@@ -27,25 +27,25 @@ public class EmployeeResource {
     EmployeeService service;
 
     @GET
-    public Response findAll() {
+    public Response getAll() {
         return Response.ok(this.service.getAll()).build();
     }
 
     @GET
     @Path("/{id}")
-    public Response findById(@PathParam("id") Long id) {
+    public Response getById(@PathParam("id") Long id) {
         return Response.ok(this.service.getById(id)).build();
     }
 
     @Path("/department/{departmentId}")
     @GET
-    public Response findByDepartment(@PathParam("departmentId") Long departmentId) {
+    public Response getByDepartment(@PathParam("departmentId") Long departmentId) {
         return Response.ok(this.service.getByDepartment(departmentId)).build();
     }
 
     @Path("/organization/{organizationId}")
     @GET
-    public Response findByOrganization(@PathParam("organizationId") Long organizationId) {
+    public Response getByOrganization(@PathParam("organizationId") Long organizationId) {
         return Response.ok(this.service.getByOrganization(organizationId)).build();
     }
 

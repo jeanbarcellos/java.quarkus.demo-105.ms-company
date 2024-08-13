@@ -7,7 +7,7 @@
     <version>2.7.4</version>
     <relativePath /> <!-- lookup parent from repository -->
   </parent>
-  <groupId>com.jeanbarcellos.ms</groupId>
+  <groupId>com.jeanbarcellos.project105</groupId>
   <artifactId>gateway</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <name>gateway</name>
@@ -19,6 +19,8 @@
   </properties>
 
   <dependencies>
+
+    <!-- DEPENDENCIAS PARA COMPILACAO E RUNTIME -->
 
     <dependency>
       <groupId>org.springframework.boot</groupId>

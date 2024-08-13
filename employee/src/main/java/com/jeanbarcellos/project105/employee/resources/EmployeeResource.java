@@ -1,4 +1,4 @@
-package com.jeanbarcellos.ms.employee.resources;
+package com.jeanbarcellos.project105.employee.resources;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;
@@ -15,8 +15,8 @@ import javax.ws.rs.core.Response;
 
 import org.eclipse.microprofile.openapi.annotations.parameters.RequestBody;
 
-import com.jeanbarcellos.ms.employee.entities.Employee;
-import com.jeanbarcellos.ms.employee.services.EmployeeService;
+import com.jeanbarcellos.project105.employee.entities.Employee;
+import com.jeanbarcellos.project105.employee.services.EmployeeService;
 
 @Path("/employees")
 @Consumes(MediaType.APPLICATION_JSON)

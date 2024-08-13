@@ -1,4 +1,4 @@
-package com.jeanbarcellos.ms.employee.producers;
+package com.jeanbarcellos.project105.employee.producers;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Produces;

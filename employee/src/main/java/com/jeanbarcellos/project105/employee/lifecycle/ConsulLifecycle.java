@@ -1,4 +1,4 @@
-package com.jeanbarcellos.ms.employee.lifecycle;
+package com.jeanbarcellos.project105.employee.lifecycle;
 
 import java.util.UUID;
 import java.util.concurrent.Executors;

@@ -2,18 +2,66 @@ version: "3.4"
 
 services:
   consul:
-    image: consul
-    container_name: consul
+    image: consul:1.15.4
+    container_name: project109_consul
     restart: always
     environment:
       - CONSUL_BIND_INTERFACE=eth0
     ports:
       - 8500:8500
     networks:
-      - project105-net
+      - project105_net
+
+  api-gateway:
+    image: jeanbarcellos/project105_gateway
+    container_name: project109_gateway
+    depends_on:
+      - consul
+    restart: always
+    ports:
+      - 8080:8080
+    networks:
+      - project105_net
+    environment:
+      - CONSUL_HOST=consul
+      - CONSUL_PORT=8500
+
+  employee-api:
+    image: jeanbarcellos/project105_employee
+    depends_on:
+      - consul
+    restart: always
+    networks:
+      - project105_net
+    environment:
+      - consul.host=consul
+      - consul.port=8500
+      #- app.address=172.20.0.1
+
+  department-api:
+    image: jeanbarcellos/project105_department
+    depends_on:
+      - consul
+    restart: always
+    networks:
+      - project105_net
+    environment:
+      - consul.host=consul
+      - consul.port=8500
+
+  organization-api:
+    image: jeanbarcellos/project105_organization
+    depends_on:
+      - consul
+    restart: always
+    networks:
+      - project105_net
+    environment:
+      - consul.host=consul
+      - consul.port=8500
 
 networks:
-  project105-net:
-    name: project105-net
+  project105_net:
+    name: project105_net
     driver: bridge
     external: true

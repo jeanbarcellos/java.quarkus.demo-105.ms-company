@@ -1,0 +1,19 @@
+version: "3.4"
+
+services:
+  consul:
+    image: consul
+    container_name: consul
+    restart: always
+    environment:
+      - CONSUL_BIND_INTERFACE=eth0
+    ports:
+      - 8500:8500
+    networks:
+      - project105_net
+
+networks:
+  project105_net:
+    name: project105_net
+    driver: bridge
+    external: true

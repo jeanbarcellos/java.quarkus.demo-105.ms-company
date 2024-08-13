@@ -9,8 +9,6 @@ import javax.transaction.Transactional;
 import javax.validation.Valid;
 import javax.ws.rs.NotFoundException;
 
-import org.eclipse.microprofile.rest.client.inject.RestClient;
-
 import com.jeanbarcellos.ms.organization.client.DepartmentClient;
 import com.jeanbarcellos.ms.organization.client.EmployeeClient;
 import com.jeanbarcellos.ms.organization.entities.Organization;
@@ -26,11 +24,9 @@ public class OrganizationService {
     OrganizationRepository repository;
 
     @Inject
-    @RestClient
     DepartmentClient departmentClient;
 
     @Inject
-    @RestClient
     EmployeeClient employeeClient;
 
     public List<Organization> getAll() {

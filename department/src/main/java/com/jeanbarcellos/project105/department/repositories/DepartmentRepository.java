@@ -1,10 +1,10 @@
-package com.jeanbarcellos.ms.department.repositories;
+package com.jeanbarcellos.project105.department.repositories;
 
 import java.util.List;
 
 import javax.enterprise.context.ApplicationScoped;
 
-import com.jeanbarcellos.ms.department.entities.Department;
+import com.jeanbarcellos.project105.department.entities.Department;
 
 import io.quarkus.hibernate.orm.panache.PanacheRepositoryBase;
 

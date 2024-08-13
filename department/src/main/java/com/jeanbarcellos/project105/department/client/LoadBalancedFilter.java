@@ -1,4 +1,4 @@
-package com.jeanbarcellos.ms.department.client;
+package com.jeanbarcellos.project105.department.client;
 
 import java.net.URI;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.jeanbarcellos.ms.client;
+package com.jeanbarcellos.ms.organization.client;
 
 import java.util.List;
 
@@ -12,21 +12,17 @@ import javax.ws.rs.core.MediaType;
 
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 
-import com.jeanbarcellos.ms.entities.Department;
+import com.jeanbarcellos.ms.organization.entities.Employee;
 
-@Path("/departments")
-@RegisterRestClient(configKey = "department-api")
+@Path("/employees")
+@RegisterRestClient(configKey = "employee-api")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 @ApplicationScoped
-public interface DepartmentClient {
+public interface EmployeeClient {
 
     @GET
     @Path("/organization/{organizationId}")
-    List<Department> getByOrganization(@PathParam("organizationId") Long organizationId);
-
-    @GET
-    @Path("/organization/{organizationId}/with-employees")
-    List<Department> getByOrganizationWithEmployees(@PathParam("organizationId") Long organizationId);
+    List<Employee> getByOrganization(@PathParam("organizationId") Long organizationId);
 
 }

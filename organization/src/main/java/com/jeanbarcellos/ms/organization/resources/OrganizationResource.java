@@ -1,4 +1,4 @@
-package com.jeanbarcellos.ms.resources;
+package com.jeanbarcellos.ms.organization.resources;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;
@@ -15,8 +15,8 @@ import javax.ws.rs.core.Response;
 
 import org.eclipse.microprofile.openapi.annotations.parameters.RequestBody;
 
-import com.jeanbarcellos.ms.entities.Organization;
-import com.jeanbarcellos.ms.services.OrganizationService;
+import com.jeanbarcellos.ms.organization.entities.Organization;
+import com.jeanbarcellos.ms.organization.services.OrganizationService;
 
 @Path("/organizations")
 @Consumes(MediaType.APPLICATION_JSON)

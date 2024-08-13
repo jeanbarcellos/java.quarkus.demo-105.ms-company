@@ -1,8 +1,8 @@
-package com.jeanbarcellos.ms.organization.repositories;
+package com.jeanbarcellos.project105.organization.repositories;
 
 import javax.enterprise.context.ApplicationScoped;
 
-import com.jeanbarcellos.ms.organization.entities.Organization;
+import com.jeanbarcellos.project105.organization.entities.Organization;
 
 import io.quarkus.hibernate.orm.panache.PanacheRepositoryBase;
 

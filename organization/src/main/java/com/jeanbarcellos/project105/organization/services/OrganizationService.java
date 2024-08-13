@@ -1,5 +1,5 @@
 
-package com.jeanbarcellos.ms.organization.services;
+package com.jeanbarcellos.project105.organization.services;
 
 import java.util.List;
 
@@ -9,10 +9,10 @@ import javax.transaction.Transactional;
 import javax.validation.Valid;
 import javax.ws.rs.NotFoundException;
 
-import com.jeanbarcellos.ms.organization.client.DepartmentClient;
-import com.jeanbarcellos.ms.organization.client.EmployeeClient;
-import com.jeanbarcellos.ms.organization.entities.Organization;
-import com.jeanbarcellos.ms.organization.repositories.OrganizationRepository;
+import com.jeanbarcellos.project105.organization.client.DepartmentClient;
+import com.jeanbarcellos.project105.organization.client.EmployeeClient;
+import com.jeanbarcellos.project105.organization.entities.Organization;
+import com.jeanbarcellos.project105.organization.repositories.OrganizationRepository;
 
 import lombok.extern.slf4j.Slf4j;
 

@@ -1,17 +1,19 @@
 package com.jeanbarcellos.ms.resources;
 
-import java.util.List;
-
 import javax.inject.Inject;
 import javax.transaction.Transactional;
-import javax.validation.Valid;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+
+import org.eclipse.microprofile.openapi.annotations.parameters.RequestBody;
 
 import com.jeanbarcellos.ms.entities.Department;
 import com.jeanbarcellos.ms.services.DepartmentService;
@@ -25,21 +27,34 @@ public class DepartmentResource {
     DepartmentService service;
 
     @GET
-    public List<Department> findAll() {
-        return service.getAll();
+    public Response findAll() {
+        return Response.ok(this.service.getAll()).build();
     }
 
-    @Path("/{id}")
     @GET
-    public Department findById(@PathParam("id") Long id) {
-        return service.getById(id);
+    @Path("/{id}")
+    public Response findById(@PathParam("id") Long id) {
+        return Response.ok(this.service.getById(id)).build();
     }
 
-    @Path("/")
     @POST
+    @Path("/")
     @Transactional
-    public Department insert(@Valid Department department) {
-        return this.service.insert(department);
+    public Response insert(@RequestBody Department department) {
+        return Response.ok(this.service.insert(department)).build();
+    }
+
+    @PUT
+    @Path("/{id}")
+    public Response update(@PathParam("id") Long id, @RequestBody Department department) {
+        return Response.ok(this.service.update(department.setId(id))).build();
+    }
+
+    @DELETE
+    @Path("/{id}")
+    public Response delete(@PathParam("id") Long id) {
+        this.service.delete(id);
+        return Response.noContent().build();
     }
 
 }
